@@ -11,9 +11,13 @@ import (
 //go:embed all:frontend/dist
 var assets embed.FS
 
+//go:embed resources/bin/wireguard/*
+var wireguardBinaries embed.FS
+
 func main() {
 	// Create an instance of the app structure
 	app := NewApp()
+	app.wireguardBinaries = wireguardBinaries
 
 	// Create application with options
 	err := wails.Run(&options.App{
